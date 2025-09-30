@@ -1,0 +1,56 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.production
+config/local.json
+config/secrets.json
+
+# Logs
+logs/
+*.log
+audit-*.log
+error-*.log
+
+# TLS Certificates (don't commit private keys)
+certs/*.key
+certs/*.pfx
+!certs/.gitkeep
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Deployment
+publish/
+backup/
+*.backup
+
+# Windows Service
+nssm.exe
+
+# Environment-specific files
+SwitchStaticHosts.json
+DHCPServerReservations.json
+migrate-switch-reservations.ps1
+migrate-switch-reservations-clean.ps1
+migrate.ps1
+nul

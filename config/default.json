@@ -1,0 +1,56 @@
+{
+  "service": {
+    "name": "DHCPRestAgent",
+    "displayName": "DHCP REST Agent",
+    "port": 8443,
+    "host": "0.0.0.0",
+    "environment": "development"
+  },
+  "tls": {
+    "enabled": true,
+    "certPath": "./certs/server.crt",
+    "keyPath": "./certs/server.key",
+    "requireClientCert": false,
+    "trustedCaPath": "./certs/ca.crt"
+  },
+  "logging": {
+    "level": "info",
+    "console": true,
+    "file": {
+      "enabled": true,
+      "path": "./logs",
+      "maxSize": "100m",
+      "maxFiles": "30d"
+    },
+    "windowsEventLog": {
+      "enabled": false,
+      "source": "DHCPRestAgent"
+    }
+  },
+  "powershell": {
+    "executionTimeout": 30000,
+    "commandTimeout": 20000,
+    "maxConcurrent": 10
+  },
+  "rateLimit": {
+    "enabled": true,
+    "windowMs": 60000,
+    "maxRequests": 100,
+    "message": "Too many requests from this IP, please try again later"
+  },
+  "security": {
+    "authentication": {
+      "type": "bearer",
+      "required": true
+    },
+    "validation": {
+      "macPattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+      "ipv4Pattern": "^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$"
+    }
+  },
+  "audit": {
+    "enabled": true,
+    "logAllRequests": true,
+    "sanitizeSensitiveData": true
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "dhcp-rest-agent",
+  "version": "1.0.0",
+  "description": "Windows DHCP REST API Agent - Secure REST API for managing DHCP reservations",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "test:unit": "jest --testPathPattern=tests/unit --coverage",
+    "test:integration": "jest --testPathPattern=tests/integration --runInBand",
+    "test:security": "jest --testPathPattern=tests/security",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix"
+  },
+  "keywords": [
+    "dhcp",
+    "windows-server",
+    "rest-api",
+    "powershell",
+    "network-management"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "node-windows": "^1.0.0-beta.8",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "joi": "^17.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.2",
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

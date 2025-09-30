@@ -1,0 +1,24 @@
+{
+  "service": {
+    "environment": "production"
+  },
+  "tls": {
+    "requireClientCert": true
+  },
+  "logging": {
+    "level": "warn",
+    "console": false,
+    "windowsEventLog": {
+      "enabled": true
+    }
+  },
+  "rateLimit": {
+    "windowMs": 60000,
+    "maxRequests": 50
+  },
+  "security": {
+    "authentication": {
+      "required": true
+    }
+  }
+}
