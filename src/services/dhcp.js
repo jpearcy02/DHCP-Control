@@ -34,6 +34,30 @@ class DHCPService {
   }
 
   /**
+   * Get all leases for a scope
+   */
+  async getLeases(scopeId) {
+    logger.info('Getting DHCP leases', { scopeId });
+
+    try {
+      const scriptPath = path.join(this.modulePath, 'Public', 'Get-DHCPLeases.ps1');
+      const result = await powershell.executeScript(scriptPath, {
+        ScopeId: scopeId
+      });
+
+      if (!result.success) {
+        throw this.createError(result);
+      }
+
+      logger.info('Retrieved DHCP leases', { scopeId, count: result.data.count });
+      return result.data;
+    } catch (error) {
+      logger.error('Failed to get leases', { scopeId, error: error.message });
+      throw error;
+    }
+  }
+
+  /**
    * Get a specific reservation by MAC address
    */
   async getReservation(scopeId, clientId) {

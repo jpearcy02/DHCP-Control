@@ -13,6 +13,7 @@
     FunctionsToExport = @(
         'Get-DHCPReservations',
         'Get-DHCPReservation',
+        'Get-DHCPLeases',
         'Add-DHCPReservation',
         'Update-DHCPReservation',
         'Remove-DHCPReservation'

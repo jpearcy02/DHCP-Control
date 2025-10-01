@@ -10,6 +10,7 @@ const { globalLimiter, writeLimiter } = require('./middleware/rateLimit');
 
 // Import routes
 const reservationsRouter = require('./routes/reservations');
+const leasesRouter = require('./routes/leases');
 const healthRouter = require('./routes/health');
 
 // Create Express app
@@ -59,6 +60,7 @@ app.use(authenticate);
 
 // API routes
 app.use('/scopes', writeLimiter, reservationsRouter);
+app.use('/scopes', leasesRouter);
 
 // 404 handler
 app.use(notFoundHandler);
