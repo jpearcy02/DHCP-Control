@@ -38,9 +38,20 @@ try {
 
     # Format the output
     $formattedLeases = $leases | ForEach-Object {
+        # Try to format MAC address, but keep original if invalid
+        $clientId = $null
+        if ($_.ClientId) {
+            try {
+                $clientId = Format-MacAddress -MacAddress $_.ClientId
+            } catch {
+                # Keep original if formatting fails (invalid/incomplete MAC)
+                $clientId = $_.ClientId
+            }
+        }
+
         @{
             IPAddress = $_.IPAddress.ToString()
-            ClientId = if ($_.ClientId) { (Format-MacAddress -MacAddress $_.ClientId) } else { $null }
+            ClientId = $clientId
             HostName = $_.HostName
             LeaseExpiryTime = if ($_.LeaseExpiryTime) { $_.LeaseExpiryTime.ToString('o') } else { $null }
             AddressState = $_.AddressState.ToString()

@@ -1,7 +1,8 @@
 const express = require('express');
 const Joi = require('joi');
 const dhcpService = require('../services/dhcp');
-const { validate, validateParams, asyncHandler } = require('../middleware/validation');
+const { validate, validateParams } = require('../middleware/validation');
+const { asyncHandler } = require('../middleware/errorHandler');
 
 const router = express.Router();
 
