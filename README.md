@@ -272,34 +272,38 @@ npm run test:security
 
 ## Troubleshooting
 
-### Service Won't Start
+For detailed troubleshooting guidance, see **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**.
 
-1. Check logs: `.\logs\error-*.log`
-2. Verify DHCP Server role is installed
-3. Ensure port 8443 is available
-4. Check TLS certificates exist
+### Quick Fixes
 
-### PowerShell Errors
-
-1. Verify DHCP PowerShell module:
-
-```powershell
-Get-Module -ListAvailable DhcpServer
+**Authentication error (401):**
+```json
+// config/local.json
+{"security": {"authentication": {"required": false}}}
 ```
 
-2. Test DHCP cmdlets:
-
-```powershell
-Get-DhcpServerv4Scope
+**TLS certificate error:**
+```json
+// config/local.json
+{"tls": {"enabled": false}}
 ```
 
-3. Check permissions (must run as administrator)
+**After config changes, restart:**
+```powershell
+# Development: type 'rs' in nodemon
+# Production: Restart-Service DHCPRestAgent
+```
 
-### Authentication Failures
+**Check logs:**
+```powershell
+Get-Content ".\logs\error-*.log" -Tail 20
+Get-Content ".\logs\audit-*.log" -Tail 20
+```
 
-1. Verify `AUTH_TOKEN` is set correctly
-2. Check token in request header
-3. Review audit logs for failed attempts
+**Health check:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8443/health"
+```
 
 ## Performance
 
